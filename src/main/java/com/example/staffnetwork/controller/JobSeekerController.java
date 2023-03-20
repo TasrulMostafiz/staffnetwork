@@ -6,10 +6,7 @@ import com.example.staffnetwork.service.JobSeekerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/jobseeker")
@@ -20,5 +17,10 @@ public class JobSeekerController {
     @PostMapping("/save")
     public ResponseEntity<JobSeekerDTO> saveTask(@RequestBody JobSeekerDTO jobSeeker){
         return new ResponseEntity<>(jobSeekerService.saveJobSeeker(jobSeeker), HttpStatus.OK);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<JobSeekerDTO> editTask(@RequestBody JobSeekerDTO jobSeekerDTO){
+        return new ResponseEntity<>(jobSeekerService.editJobSeeker(jobSeekerDTO), HttpStatus.OK);
     }
 }

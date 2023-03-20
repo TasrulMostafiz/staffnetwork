@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class JobSeekerServiceImpl implements JobSeekerService {
 
@@ -33,6 +35,24 @@ public class JobSeekerServiceImpl implements JobSeekerService {
             jobSeekerDTO=mapperService.mapJobSeekerToJobSeekerDTO(jobSeeker);
         }catch (Exception e){
             throw new StaffNetworkAPIException(HttpStatus.BAD_REQUEST,e.getMessage());
+        }
+        return jobSeekerDTO;
+    }
+
+    @Override
+    public JobSeekerDTO editJobSeeker(JobSeekerDTO jobSeekerDTO) {
+        try
+        {
+            Optional<JobSeeker> jobSeekerOptional = jobSeekerRepository.findById(jobSeekerDTO.getId());
+            if(jobSeekerOptional.isPresent()){
+                JobSeeker jobSeeker=mapperService.mapJobSeekerDTOTJobSeeker(jobSeekerDTO);
+                jobSeekerRepository.save(jobSeeker);
+                jobSeekerDTO=mapperService.mapJobSeekerToJobSeekerDTO(jobSeeker);
+            }else{
+                throw new ResourceNotFoundException("Task not found","id",jobSeekerDTO.getId());
+            }
+        }catch (Exception e){
+            throw new StaffNetworkAPIException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
         return jobSeekerDTO;
     }

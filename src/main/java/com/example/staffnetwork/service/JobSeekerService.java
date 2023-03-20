@@ -5,4 +5,5 @@ import com.example.staffnetwork.dto.JobSeekerDTO;
 
 public interface JobSeekerService {
     public JobSeekerDTO saveJobSeeker(JobSeekerDTO jobSeekerDTO);
+    public JobSeekerDTO editJobSeeker(JobSeekerDTO jobSeekerDTO);
 }
