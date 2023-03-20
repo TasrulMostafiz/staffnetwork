@@ -34,14 +34,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//    @OneToMany(
-//            cascade = CascadeType.ALL
-//    )
-//    @JoinColumn(
-//            name = "id",
-//            referencedColumnName = "createdby"
-//    )
-//    private List<Task> tasks;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    @Transient
+    private JobSeeker jobSeeker;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

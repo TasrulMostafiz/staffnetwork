@@ -1,7 +1,9 @@
 package com.example.staffnetwork.service;
 
 
+import com.example.staffnetwork.database.entity.JobSeeker;
 import com.example.staffnetwork.database.entity.User;
+import com.example.staffnetwork.dto.JobSeekerDTO;
 import com.example.staffnetwork.dto.UserDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,14 @@ public class MapperService {
 
     public MapperService(){
         modelMapper=new ModelMapper();
+    }
+
+    public JobSeekerDTO mapJobSeekerToJobSeekerDTO(JobSeeker jobSeeker){
+        return modelMapper.map(jobSeeker, JobSeekerDTO.class);
+    }
+
+    public JobSeeker mapJobSeekerDTOTJobSeeker(JobSeekerDTO jobSeekerDTO){
+        return modelMapper.map(jobSeekerDTO, JobSeeker.class);
     }
     public UserDTO mapUserToUserDTO(User user){
         return modelMapper.map(user, UserDTO.class);
