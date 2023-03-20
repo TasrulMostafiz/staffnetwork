@@ -2,6 +2,9 @@ package com.example.staffnetwork.database.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,11 +32,20 @@ public class JobSeeker extends BaseEntity {
     )
     @Transient
     private User user;
+    @NotBlank(message = "firstname is required!")
+    @NotNull
     private String firstname;
+    @NotBlank(message = "lastname is required!")
+    @NotNull
     private String lastname;
+    @NotBlank(message = "gender is required!")
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    @Past
     private LocalDate dob;
+    @NotBlank(message = "phone is required!")
+    @NotNull
     private String phone;
 
 
