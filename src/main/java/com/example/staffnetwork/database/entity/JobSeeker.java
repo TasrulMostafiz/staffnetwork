@@ -38,8 +38,7 @@ public class JobSeeker extends BaseEntity {
     @NotBlank(message = "lastname is required!")
     @NotNull
     private String lastname;
-    @NotBlank(message = "gender is required!")
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @Past
