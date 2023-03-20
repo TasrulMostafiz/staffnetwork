@@ -29,7 +29,6 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     @Override
     public JobSeekerDTO saveJobSeeker(JobSeekerDTO jobSeekerDTO) {
         try {
-//            jobSeeker.setUser(userRepository.findByIdEquals(jobSeeker.getId()).get());
             JobSeeker jobSeeker = mapperService.mapJobSeekerDTOTJobSeeker(jobSeekerDTO);
             jobSeekerRepository.save(jobSeeker);
             jobSeekerDTO=mapperService.mapJobSeekerToJobSeekerDTO(jobSeeker);
@@ -49,7 +48,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
                 jobSeekerRepository.save(jobSeeker);
                 jobSeekerDTO=mapperService.mapJobSeekerToJobSeekerDTO(jobSeeker);
             }else{
-                throw new ResourceNotFoundException("Task not found","id",jobSeekerDTO.getId());
+                throw new ResourceNotFoundException("Job Seeker not found","id",jobSeekerDTO.getId());
             }
         }catch (Exception e){
             throw new StaffNetworkAPIException(HttpStatus.BAD_REQUEST, e.getMessage());
