@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -20,15 +21,14 @@ import java.util.UUID;
 @Table(name = "education")
 public class Education extends BaseEntity{
     @Id
-    @Column(name = "user_id")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id")
     private UUID id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @ManyToOne()
     @JoinColumn(
-            name = "user_id",
-            referencedColumnName = "id"
+            name = "user_id"
     )
-    @Transient
     private User user;
     @NotBlank(message = "school_name is required!")
     @NotNull
