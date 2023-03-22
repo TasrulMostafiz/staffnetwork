@@ -39,6 +39,11 @@ public class User implements UserDetails {
     @Transient
     private JobSeeker jobSeeker;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    @Transient
+    private Education education;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

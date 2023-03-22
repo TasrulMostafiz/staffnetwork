@@ -1,8 +1,10 @@
 package com.example.staffnetwork.service;
 
 
+import com.example.staffnetwork.database.entity.Education;
 import com.example.staffnetwork.database.entity.JobSeeker;
 import com.example.staffnetwork.database.entity.User;
+import com.example.staffnetwork.dto.EducationDTO;
 import com.example.staffnetwork.dto.JobSeekerDTO;
 import com.example.staffnetwork.dto.UserDTO;
 import org.modelmapper.ModelMapper;
@@ -26,4 +28,7 @@ public class MapperService {
     public UserDTO mapUserToUserDTO(User user){
         return modelMapper.map(user, UserDTO.class);
     }
+
+    public EducationDTO mapEducationToEducationDTO(Education education){return modelMapper.map(education,EducationDTO.class);}
+    public Education mapEducationDTOToEducation(EducationDTO educationDTO){return modelMapper.map(educationDTO,Education.class);}
 }
