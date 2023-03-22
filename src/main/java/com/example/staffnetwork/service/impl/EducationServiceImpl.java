@@ -14,7 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class EducationServiceImpl implements EducationService {
@@ -53,5 +57,17 @@ public class EducationServiceImpl implements EducationService {
             throw new StaffNetworkAPIException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
         return educationDTO;
+    }
+
+    @Override
+    public EducationDTO getEducationById(UUID id) {
+        return mapperService.mapEducationToEducationDTO(educationRepository.findById(id).get());
+    }
+
+    @Override
+    public List<EducationDTO> getEducationByUserId(UUID id) {
+        return educationRepository.findByUser_IdEquals(id).stream()
+                .map(education -> mapperService.mapEducationToEducationDTO(education))
+                .collect(Collectors.toList());
     }
 }
