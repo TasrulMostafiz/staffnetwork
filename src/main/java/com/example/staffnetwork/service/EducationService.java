@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 public interface EducationService {
     public EducationDTO saveEducation(EducationDTO educationDTO);
+    public EducationDTO editEducation(EducationDTO educationDTO);
 }
