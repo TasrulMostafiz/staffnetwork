@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/education")
 public class EducationController {
@@ -21,5 +24,15 @@ public class EducationController {
     @PutMapping("/edit")
     public ResponseEntity<EducationDTO> editEducation(@Valid @RequestBody EducationDTO educationDTO){
         return new ResponseEntity<>(educationService.editEducation(educationDTO), HttpStatus.OK);
+    }
+
+    @GetMapping("/educationbyid/{id}")
+    public ResponseEntity<EducationDTO> getEducationById(@PathVariable("id") String id){
+        return new ResponseEntity<>(educationService.getEducationById(UUID.fromString(id)), HttpStatus.OK);
+    }
+
+    @GetMapping("/educationbyuserid/{id}")
+    public ResponseEntity<List<EducationDTO>> getEducationByUserId(@PathVariable("id") String id){
+        return new ResponseEntity<>(educationService.getEducationByUserId(UUID.fromString(id)), HttpStatus.OK);
     }
 }
