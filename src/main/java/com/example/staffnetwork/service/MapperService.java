@@ -16,6 +16,9 @@ public class MapperService {
 
     public MapperService(){
         modelMapper=new ModelMapper();
+        modelMapper.typeMap(Education.class,EducationDTO.class).addMappings(mapper ->{
+            mapper.map(src -> src.getUser().getId(),EducationDTO::setUser_id);
+        });
     }
 
     public JobSeekerDTO mapJobSeekerToJobSeekerDTO(JobSeeker jobSeeker){

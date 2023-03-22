@@ -39,10 +39,8 @@ public class User implements UserDetails {
     @Transient
     private JobSeeker jobSeeker;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    @Transient
-    private Education education;
+    @OneToMany(mappedBy = "user")
+    private List<Education> education;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

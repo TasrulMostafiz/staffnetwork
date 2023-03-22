@@ -12,6 +12,7 @@ import java.util.UUID;
 @Data
 public class EducationDTO {
     private UUID id;
+    private UUID user_id;
     private String school_name;
     @NotBlank(message = "degree_name is required!")
     @NotNull
